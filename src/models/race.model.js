@@ -1,33 +1,35 @@
 const mongoose = require('mongoose')
 
-const driverSchema = new mongoose.Schema({
-  driverNumber: {
+const raceSchema = new mongoose.Schema({
+  place: {
     type: String,
     required: true
   },
-  name: {
+  circuit: {
     type: String,
     required: true
   },
-  surname: {
+  imgCircuit: {
     type: String,
     required: true
   },
-  team: {
+  imgBackground: {
+    type: String,
+    required: true
+  },
+  flag: {
     type: String
   },
-  imageDriver: {
-    type: String
+  startDate: {
+    type: Date,
+    required: true
   },
-  imageNumber: {
-    type: String
-  },
-  imageFlag: {
-    type: String
+  raceResult: {
+    type: Array
   }
 })
 
-driverSchema.set('toJSON', {
+raceSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -35,5 +37,5 @@ driverSchema.set('toJSON', {
   }
 })
 
-const Driver = mongoose.model('Driver', driverSchema)
-module.exports = Driver
+const Race = mongoose.model('Race', raceSchema)
+module.exports = Race
